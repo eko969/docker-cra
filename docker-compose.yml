@@ -6,13 +6,12 @@ services:
       dockerfile: Dockerfile.dev
     ports: 
       - "3000:3000"
-
     # volumes: 
       #- /home/node/app/node_modules
       #- ./:/home/node/app
-      
     volumes: 
-      - /home/node/app/node_modules
+      - type: volume
+        target: /home/node/app/node_modules
       - type: bind
         source: ./
         target: /home/node/app
