@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
   docker-cra: 
     build:
@@ -6,8 +6,18 @@ services:
       dockerfile: Dockerfile.dev
     ports: 
       - "3000:3000"
+
+    # volumes: 
+      #- /home/node/app/node_modules
+      #- ./:/home/node/app
+      
     volumes: 
       - /home/node/app/node_modules
-      - .:/home/node/app
+      - type: bind
+        source: ./
+        target: /home/node/app
     environment:
       - CHOKIDAR_USEPOLLING=true
+volumes: 
+  lh:
+    driver: local
