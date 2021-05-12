@@ -5,7 +5,7 @@ WORKDIR /home/node/app
 
 COPY --chown=node:node package.json .
 
-RUN yarn --only=production
+RUN yarn
 COPY --chown=node:node . .
 
 CMD ["yarn", "start"]
