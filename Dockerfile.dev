@@ -1,11 +1,11 @@
 FROM node:alpine
+WORKDIR /home/node
 
 USER node
-WORKDIR /home/node/app
-
-COPY --chown=node:node package.json .
-
-RUN yarn
-COPY --chown=node:node . .
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+COPY package.json .
+RUN yarn install --only=prod
+COPY ./ ./
 
 CMD ["yarn", "start"]
